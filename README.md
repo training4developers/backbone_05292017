@@ -7,7 +7,7 @@ Eric Greene [linkedin.com/in/ericwgreene](linkedin.com/in/ericwgreene)
 ## Schedule
 
 Class:
-- Thursday - Friday: 8:30am to 4:30pm
+- Monday - Wednesday: 8:30am to 4:30pm
 
 Breaks:
 - Morning: 10:15am to 10:30am
@@ -16,10 +16,11 @@ Breaks:
 
 ## Course Outline
 
-	JavaScript topics will be included as needed into the Backbone.js content
+JavaScript topics will be included as needed into the Backbone.js content
 
-- Day 1 - Backbone.js Overview, Events, Models, Collections
-- Day 2 - Views, Handlebars, Routing, Sync
+- Day 1 - JavaScript and jQuery Review
+- Day 2 - Backbone.js Overview, Events, Models, Collections
+- Day 3 - Views, Handlebars, Routing, Sync
 
 ## Links
 
