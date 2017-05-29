@@ -1,26 +1,10 @@
 'use strict';
 
-var aamina = {
-    amt: 2000,
-    address: {
-        province: 'AB',
-        city: 'Calgary'
-    }
-};
+console.dir($('ul'));
 
-var aniqa = Object.create(aamina);
-console.log(aniqa.amt);
-aamina.amt = 3000;
-console.log(aniqa.amt);
-aniqa.amt = 480;
-console.log(aniqa.amt);
-console.log(aamina.amt);
+$('li#fav-color.iraq.usa').addClass('selected');
 
-delete aniqa.amt;
-console.dir(aniqa);
-console.log(aniqa.amt);
-console.log(aniqa.address.city);
-aniqa.address.city = 'Paris';
-console.log(aniqa.address.city);
-console.log(aamina.address.city);
+// console.dir(document.querySelectorAll('li'));
+
+var domObject = $('ul')[0];
 
