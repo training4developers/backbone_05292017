@@ -1,12 +1,7 @@
 
 var carTableViewTemplate = `
     <thead>
-        <tr>
-            <th><%- makeColumnLabel %></th>
-            <th><%- modelColumnLabel %></th>
-            <th><%- yearColumnLabel %></th>
-            <th><%- colorColumnLabel %></th>
-        </tr>
+        <tr></tr>
     </thead> 
     <tbody></tbody>
 `;
@@ -19,6 +14,16 @@ var carModelRowTemplate = `
         <td><%- color %></td>
     </tr>
 `;
+
+var CarTableColumnHeader = Backbone.View.extend({
+
+    tagName: 'th',
+
+    render: function() {
+        this.$el.text(this.model);
+        return this;
+    }
+});
 
 var CarTableView = Backbone.View.extend({
 
@@ -39,8 +44,21 @@ var CarTableView = Backbone.View.extend({
             colorColumnLabel: 'Color',
         };
 
-        console.log(view.template(context));
         view.$el.html(view.template(context));
+
+        var trHeader = view.$el.find('thead > tr');
+
+        var columnHeaders = [ 'Make', 'Model', 'Year', 'Color' ];
+
+        columnHeaders.forEach(function(columnHeaderText) {
+
+            var colHeaderView = new CarTableColumnHeader({
+                model: columnHeaderText
+            });
+
+            trHeader.append(colHeaderView.render().$el);
+
+        });
 
         var tBody = view.$el.find('tbody');
 
