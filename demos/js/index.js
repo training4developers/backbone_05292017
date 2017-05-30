@@ -1,34 +1,44 @@
+// var Person = Backbone.Model.extend({ 
+// });
 
-var Person = Backbone.Model.extend({
+// var person1 = new Backbone.Model({
+//     firstName: 'Bob'
+// });
 
-    defaults: {
-        firstName: '',
-        lastName: '',
-        age: 0
-    },
+var People = Backbone.Collection.extend({});
 
-    getFullName: function() {
-        return this.get('firstName') + ' ' + this.get('lastName');
-    }
+var people = new People();
 
+people.add(new Backbone.Model({ id: 1, name: 'Thor', source: 'mythology' }));
+people.add(new Backbone.Model({ id: 2, name: 'Wolverine', source: 'comics' }));
+people.add(new Backbone.Model({ id: 3, name: 'Erradicator', source: 'comics' }));
+
+var person = people.findWhere({ name: 'Erradicator' });
+
+console.log(person);
+
+people.remove(person.id);
+
+people.remove(person);
+
+people.each(function(person) {
+    console.log(person.cid);
+    console.log(person.id);
 });
 
-var person1 = new Person({
-    firstName: 'Justin',
-    lastName: 'Trudeau',
-    age: 45
-});
+// var comicPeople = people.filter(function(person) {
+//     if (person.get('source') === 'comics') {
+//         return true;
+//     } else {
+//         return false;
+//     }
+// });
 
-var person2 = new Person({
-    firstName: 'Andrew',
-    lastName: 'Scheer',
-    age: 38
-});
+// console.dir(comicPeople);
 
-console.log(person1 === person2);
-console.log(person1.getFullName === person2.getFullName);
-console.log(Object.getPrototypeOf(person1) === Object.getPrototypeOf(person2));
-console.dir(person1);
-console.dir(person2);
-console.log(person1.getFullName());
-console.log(person2.getFullName());
+// var peopleNames = people.map(function(person) {
+//     return person.get('name').toUpperCase();
+// });
+// console.log(peopleNames);
+
+//console.dir(people);
