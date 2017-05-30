@@ -13,17 +13,33 @@ people.add(new Backbone.Model({ id: 1, name: 'Thor', source: 'mythology' }));
 people.add(new Backbone.Model({ id: 2, name: 'Wolverine', source: 'comics' }));
 people.add(new Backbone.Model({ id: 3, name: 'Erradicator', source: 'comics' }));
 
-var person = people.findWhere({ name: 'Erradicator' });
+// var person = people.findWhere({ name: 'Erradicator' });
 
-console.log(person);
+// console.log(person);
 
-people.remove(person.id);
+// people.remove(person.id);
 
-people.remove(person);
+// people.remove(person);
+
+var tBody = $('tbody');
 
 people.each(function(person) {
-    console.log(person.cid);
-    console.log(person.id);
+
+    var idCell = $('<td>');
+    idCell.text(person.id);
+
+    var nameCell = $('<td>');
+    nameCell.text(person.get('name'));
+
+    var sourceCell = $('<td>');
+    sourceCell.text(person.get('source'));
+
+    var personRow = $('<tr>');
+    personRow.append(idCell);
+    personRow.append(nameCell);
+    personRow.append(sourceCell);
+
+    tBody.append(personRow);
 });
 
 // var comicPeople = people.filter(function(person) {
