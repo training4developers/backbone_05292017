@@ -1,31 +1,47 @@
-var DemoView = Backbone.View.extend({
+var CarTableView = Backbone.View.extend({
 
-    tagName: 'ul',
-    id: 'color-list',
-    className: 'cool-colors',
+    tagName: 'table',
 
     render: function() {
 
         var view = this;
 
-        // this.collection.forEach(function(color) {
-        //     view.$el.append($('<li>').text(color));
-        // });
+        var columnHeaderRow = $('<tr>');
+        columnHeaderRow.append($('<th>').text('Make'));
+        columnHeaderRow.append($('<th>').text('Model'));
+        columnHeaderRow.append($('<th>').text('Year'));
+        columnHeaderRow.append($('<th>').text('Color'));
+        
+        var tHead = $('<thead>');
+        tHead.append(columnHeaderRow);
 
-        for (var x=0; x < this.collection.length; x++) {
-            this.$el.append($('<li>').text(this.collection[x]));
-        }
+        var tBody = $('<tbody>');
+
+        view.collection.forEach(function(car) {
+            
+            var modelRow = $('<tr>');
+            modelRow.append($('<td>').text(car.get('make')));
+            modelRow.append($('<td>').text(car.get('model')));
+            modelRow.append($('<td>').text(car.get('year')));
+            modelRow.append($('<td>').text(car.get('color')));
+            tBody.append(modelRow);
+
+        });
+
+        view.$el.append(tHead).append(tBody);
 
         return view;
     }
 
 });
 
-var demoView = new DemoView({
-    calgary: 'is south of Edmonton',
-    model: 'red',
-    collection: [ 'blue', 'green', 'purple' ]
+var carTableView = new CarTableView({
+    id: 'car-table',
+    collection: new Backbone.Collection([
+        new Backbone.Model({ make: 'A', model: '1', year: 2000, color: 'blue' }),
+        new Backbone.Model({ make: 'B', model: '2', year: 2001, color: 'red' }),
+        new Backbone.Model({ make: 'C', model: '3', year: 2002, color: 'yellow' }),
+    ])
 });
-$('main').append(demoView.render().$el);
 
-console.log(demoView);
+$('main').append(carTableView.render().$el);
