@@ -1,21 +1,37 @@
+
+var carTableViewTemplate = `
+    <thead>
+        <tr>
+            <th><%- makeColumnLabel %></th>
+            <th><%- modelColumnLabel %></th>
+            <th><%- yearColumnLabel %></th>
+            <th><%- colorColumnLabel %></th>
+        </tr>
+    </thead> 
+    <tbody></tbody>
+`;
+
 var CarTableView = Backbone.View.extend({
 
     tagName: 'table',
+
+    template: _.template(carTableViewTemplate),
 
     render: function() {
 
         var view = this;
 
-        var columnHeaderRow = $('<tr>');
-        columnHeaderRow.append($('<th>').text('Make'));
-        columnHeaderRow.append($('<th>').text('Model'));
-        columnHeaderRow.append($('<th>').text('Year'));
-        columnHeaderRow.append($('<th>').text('Color'));
-        
-        var tHead = $('<thead>');
-        tHead.append(columnHeaderRow);
+        var context = {
+            makeColumnLabel: 'Make',
+            modelColumnLabel: 'Model',
+            yearColumnLabel: 'Year',
+            colorColumnLabel: 'Color',
+        };
 
-        var tBody = $('<tbody>');
+        console.log(view.template(context));
+        view.$el.html(view.template(context));
+
+        var tBody = view.$el.find('tbody');
 
         view.collection.forEach(function(car) {
             
@@ -27,8 +43,6 @@ var CarTableView = Backbone.View.extend({
             tBody.append(modelRow);
 
         });
-
-        view.$el.append(tHead).append(tBody);
 
         return view;
     }
