@@ -24,8 +24,9 @@
 
         tagName: 'form',
 
-        // review the code in this file, and write the code to wire up the
-        // event handler for submitting a car
+        events: {
+            'click [data-submit-car-action]': 'submitCar'
+        },
 
         template: _.template(templateStr),
 
@@ -55,6 +56,7 @@
 
             // write the code to trigger the submit car form event, and pass the car
             // as the event data
+            view.trigger(carToolActions.SUBMIT_CAR_FORM, car);
         }
 
     });

@@ -77,6 +77,7 @@
         // write the code for the controller to listen for the show car form
         // event from router
         // when the event fires, run the show car form function
+        controller.listenTo(router, carToolActions.SHOW_CAR_FORM, showCarForm);
 
     };
 
