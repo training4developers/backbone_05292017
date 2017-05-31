@@ -20,8 +20,9 @@
 
         tagName: 'div',
 
-        // review the code in this file, and write the code to wire up the
-        // event handler for switching to the add car form
+        events: {
+            'click [data-add-car-action]': 'addCar'
+        },
 
         template: _.template(templateStr),
 
@@ -37,10 +38,9 @@
                 view.collection.forEach(function(car) {
                     var carTableRow = new CarTableRow({ model: car });
 
-                    wire up the car table view to listen for the delete car row event
-                    on the car table row view
-                    when the event is received from the car table row, have the car table view
-                    trigger the same event using the car id passed from the car table row view
+                    view.listenTo(carTableRow, carToolActions.DELETE_CAR_ROW, function(carId) {
+                        view.trigger(carToolActions.DELETE_CAR_ROW, carId);
+                    });
 
                     tBody.append(carTableRow.render().$el);
                 });
@@ -52,8 +52,7 @@
         },
 
         addCar: function() {
-
-            // write the code to trigger the event to show the car form
+            this.trigger(carToolActions.SHOW_CAR_FORM);
         }
 
     });

@@ -30,6 +30,7 @@ JavaScript topics will be included as needed into the Backbone.js content
 - [Eric's Blog](http://t4d.io/)
 - [WintellectNOW](https://www.wintellectnow.com/Home/Instructor?instructorId=EricGreene) - Special Offer Code: GREENE-2016
 - [Microsoft Virtual Academy](https://mva.microsoft.com/search/SearchResults.aspx#!q=Eric%20Greene&lang=1033)
+- [Web Frameworks Tutorials (Angular 4 + React)](https://github.com/Microsoft/TechnicalCommunityContent/tree/master/Web%20Frameworks)
 
 ### Other Resources
 

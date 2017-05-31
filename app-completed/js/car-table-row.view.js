@@ -12,9 +12,9 @@
 
         tagName: 'tr',
 
-        // review the code in this file, and write the code to wire up the
-        // event handler for deleting a car row
-        
+        events: {
+            'click [data-delete-car-row-action]': 'deleteCarRow'
+        },
 
         template: _.template(templateStr),
 
@@ -27,8 +27,7 @@
         deleteCarRow: function() {
             var view = this;
 
-            // write the code to trigger the delete car row action passing
-            // in the car id as the event data
+            view.trigger(carToolActions.DELETE_CAR_ROW, view.model.id);
         }
     });
 

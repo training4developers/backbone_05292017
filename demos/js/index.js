@@ -1,40 +1,36 @@
-var p1 = new Promise(function(resolve) {
-    setTimeout(function() {
-        resolve('a');
-    }, 2000);
+
+var Widget = Backbone.Model.extend({
+
+    urlRoot: 'http://localhost:3000/widgets',
+
+    defaults: {
+        id: 0,
+        name: '',
+        description: '',
+        color: '',
+        size: '',
+        quantity: 0,
+        price: 0
+    }
 });
 
-var p2 = new Promise(function(resolve) {
-    setTimeout(function() {
-        resolve('b');
-    }, 4000);
+var widget = new Widget({ id: 2 });
+widget.fetch({
+    success: function() { 
+        console.log(JSON.stringify(widget.attributes));
+    }
+});
+console.log(JSON.stringify(widget.attributes));
+
+var Widgets = Backbone.Collection.extend({
+    url: 'http://localhost:3000/widgets',
+    model: Widget
 });
 
-var p3 = new Promise(function(resolve) {
-    setTimeout(function() {
-        resolve('c');
-    }, 6000);
+var widgets = new Widgets();
+widgets.fetch({
+    success: function() {
+        console.log(widgets.models);
+    }
 });
 
-var p4 = new Promise(function(resolve) {
-    setTimeout(function() {
-        resolve('d');
-    }, 8000);
-});
-
-p1.then(function(result) {
-    console.log(result);
-});
-p2.then(function(result) {
-    console.log(result);
-});
-p3.then(function(result) {
-    console.log(result);
-});
-p4 .then(function(result) {
-    console.log(result);
-});
-
-Promise.all([p1,p2,p3,p4]).then(function() {
-    console.log('all done');
-});

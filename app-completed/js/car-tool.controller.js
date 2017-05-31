@@ -24,6 +24,8 @@
             cars.fetch({
                 success: function() {
 
+                    console.log(cars);
+
                     controller.currentView = new CarTableView({
                         collection: cars
                     });
@@ -67,29 +69,15 @@
 
             var car = new Car({ id: carId });
 
-            // write the code to delete a car from the rest service
-            // in the success call back function, call the show car table function
-            var p = new Promise(function(resolve) {
-
-                car.destroy({
-                    success: function() {
-                        resolve();
-                    }
-                });            
-
+            car.destroy({
+                success: function() {
+                    showCarTable();
+                }
             });
 
-            p.then(function() {
-                showCarTable();
-            });
-            
         };
 
         controller.listenTo(router, carToolActions.SHOW_CAR_TABLE, showCarTable);
-        
-        // write the code for the controller to listen for the show car form
-        // event from router
-        // when the event fires, run the show car form function
         controller.listenTo(router, carToolActions.SHOW_CAR_FORM, showCarForm);
 
     };
